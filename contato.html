@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato</title>
+    <link rel="stylesheet" type="text/css" href="_css/DBZ.css" />
+    <link rel="stylesheet" type="text/css" href="_css/Contato.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<style>
+    body {
+        background: rgb(82 78 159);
+        background: linear-gradient(343deg, rgba(2, 0, 36, .6) 0%, rgba(255, 103, 0, 0) 100%, rgba(121, 110, 9, 0.12296983758700697) 100%);
+    }
+</style>
+
+<body>
+
+
+    <header id="cabecalho">
+        <nav class="navbar">
+            <a href="#" class="logo">
+                <img src="_imagens/esfera-do-dragao-clipart-7-depositphotos-bgremover.png" alt="" width="118px"
+                    height="110px">
+            </a>
+
+            <input type="checkbox" id="toggler">
+            <label for="toggler">
+                <!-- <i class="ri-menu-list"></i> -->
+                <i class="fa fa-bars"></i>
+            </label>
+            <div class="menu">
+                <ul class="list">
+
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="transform.html">Transformações</a></li>
+                    <li><a href="inimigos.html">Inimigos</a></li>
+                    <li><a href="games.html">Games</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+
+        <div class="container-imagem-titulo">
+            <img src="_imagens/_icone transformacao-depositphotos-bgremover.png" alt="" />
+        </div>
+
+        <div class="container-form">
+            <h1>Contato</h1>
+
+            <form>
+                <div class="form-control">
+                    <label>Nome</label>
+                    <input id="nome" type="text" placeholder="Insira seu nome">
+
+                </div>
+                <div class="form-control">
+                    <label>Email</label>
+
+                    <input id="email" type="text" placeholder="Insira seu email">
+                    <div id="result"></div>
+                </div>
+                <div class="form-control">
+                    <label> Mensagem do Usuário</label>
+                    <textarea id="mensagem" cols="58" rows="5" placeholder="Deixe aqui seu Comentário">
+                    </textarea>
+
+                    <button id="validate" class="btn" type="submit">Enviar</button>
+
+                </div>
+            </form>
+        </div>
+
+        <div class="container-comments" id="comments"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    // essa função depois de funcionar corretamente ira mostrar se o email é nao valido , 
+    //foi retirado a parte do codigo para mostrar se É valido , 
+    //a informação se ele é valido nao é importante nesse caso 
+    function validar() {
+
+        let comentarios = $('#comments'); //pega o elemento comentarios
+        let result = $('#result'); // aqui é o resultado da validação 
+        result.text("")
+
+
+
+
+        // limpa o resultado
+
+        let email = $('#email').val() //pega o valor do email
+        let nome = $('#nome').val() //pega o valor do nome
+        let mensagem = $('#mensagem').val() //pega o valor da mensagem
+
+        console.log('mensagem', mensagem.length)
+        console.log('nome', nome.length) //verifica o tamanho da mensagem quantidade de caracteres
+
+        if (mensagem.length <= 5) {
+            console.log("mensgem menor que 5")
+            result.text("o texto deve conter no minimo 5 caracteres") // mostra o email nao valido
+            result.css("color", "red");
+            return null;
+        } else {
+            console.log()
+        }
+
+
+        if (!validarEmail(email)) { // se o email nao for valido
+
+            result.text(email + "o email digitado não é valido") // mostra o email nao valido
+            result.css("color", "red"); // muda a cor do texto para vermelho
+
+
+
+
+
+
+
+
+
+        } else { // se o email for valido
+
+            // construção do comentario e adição no html
+            comentarios.append("<div class='comment'><label>" + nome + "</label><p>" + mensagem + "</p></div>");
+            $('#nome').val('')
+            $('#email').val('')
+            $('#mensagem').val('')
+        }
+
+        // 1 - limpar os campos apos inserção do comentario---realizado
+        // 2 - Estilizar os comentarios---realizado
+        // 3 - Validar o tamanho do comentario(max de 180) e nome(minimo de 3 caracteres)
+
+        // let numero1 = 4;
+        // let numero2 = 10;
+
+
+        return false;
+
+    }
+
+    $(document).ready(function () {
+        $('#validate').click(function (event) {
+            event.preventDefault(); // mantenha o padrao que esta na pagina nao recarrega
+            validar();
+        })
+    });
+
+
+    // vamos criar uma função que recebe um parametro do tipo string 
+    // essa função ira validar  se o texto digitado é um email valido ou nao
+    function validarEmail(email) {
+        // regex é uma função que serve para validar dados...
+        //obs esse em especifico é para validadçõa de email
+        let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        // Uma fução simples recebe um determinado dado e devolve o
+        // resultado dele ou email se é valido ou não
+        return regex.test(email);
+        // return ---- vai ser o retorno esperado da funçao 
+        //seja ele um dado ou email, verdadadeiro ou falso um numero,
+        // ou a informaçao que vc precisar
+    }
+    function clearInputFile(f) {
+        if (f.value) {
+            try {
+                f.value = '';
+            } catch (err) { }
+            if (f.value) {
+                var form = document.createElement('form'),
+                    parentNode = f.parentNode, ref = f.nextSibling;
+                form.appendChild(f);
+                form.reset();
+                parentNode.insertBefore(f, ref);
+            }
+        }
+    }
+</script>

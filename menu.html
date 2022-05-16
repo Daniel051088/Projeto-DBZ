@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+</head>
+
+<body>
+    <nav class="navbar">
+        <a href="#" class="logo">Logo</a>
+        <label for="toggler">
+            Clique aqui
+        </label>
+        <div class="menu">
+            <ul class="list">
+                <li><a href="#">Pagina 1</a></li>
+                <li><a href="#">Pagina 2</a></li>
+                <li><a href="#">Pagina 3</a></li>
+                <li><a href="#">Pagina 4</a></li>
+                <li><a href="#">Pagina 5</a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+
+</html>
+
+<style>
+    .navbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+    }
+
+    .navbar a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .logo {
+        margin-right: 50px;
+    }
+
+    .list {
+        list-style: none;
+        display: flex;
+        gap: 25px;
+    }
+
+    #toggler,
+    .navbar label {
+        display: none;
+    }
+
+    @media screen and (max-width:600px) {
+        .menu {
+            width: 100%;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .list {
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .navbar label {
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #toggler:checked~.menu {
+            max-height: 100%;
+        }
+
+    }
+</style>
