@@ -144,10 +144,15 @@ div.first-image img {
 
 .container-imagem img:hover {
     -webkit-transform: scale(1.3);
-
-
+   
 
     /* efeito de ampliação de imagem*/
+}
+
+li:hover{
+    -webkit-transform: scale(1.3);
+    transition: 1s;
+    text-shadow: red -6px 0, cyan 6px 0;
 }
 
 .first-image img:hover {
